@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  title: Air quality API
+  version: 1.0.0
+paths:
+  /nearest-city-pollution:
+    get:
+      description: Get nearest city pollution by (GPS coordinates).
+      parameters:
+        - in: query
+          name: latitude
+          required: true
+          schema:
+            type: integer                      
+        - in: query
+          name: longitude
+          required: true
+          schema:
+            type: integer 
+
+      responses:
+        200:
+          description: Nearest city pollution
+          content:
+            application/json:
+               schema:
+                type: object
+                properties:
+                  Result:
+                    type: object
+                    $ref: '#/components/schemas/NearestCityResult'
+                              
+  /most-polluted:
+    get:
+      description: Get post polluted time by city name
+      parameters:
+        - in: query
+          name: city
+          required: true
+          schema:
+             type: integer 
+      responses:
+        200:
+            description: Response of polluted time
+            content:
+              application/json:
+                schema:
+                   type: object
+                   $ref: '#/components/schemas/PollutedTimeResult'
+ 
+components:
+  schemas:
+    NearestCityResult:
+      title: NearestCity
+      type: object
+      description: Nearest city result
+      properties:
+        Pollution:
+          type: object
+          properties:
+            ts:
+              type: string
+              format: date
+            aqius:
+              type: number
+            mainus:
+              type: string
+            aqicn:
+              type: number
+            maincn:
+              type: string
+    PollutedTimeResult:
+       title: PollutedTimeResult
+       type: object
+       description: Polluted time result
+       properties:
+         result:
+           type: string

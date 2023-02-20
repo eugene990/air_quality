@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: air_container_db
+    image: postgres:11
+    ports:
+      - "$DB_PORT:$DB_PORT"
+    environment:
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
+      POSTGRES_DB: $DB_NAME
+    volumes:
+       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
