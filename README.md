@@ -17,3 +17,7 @@
 2. Run cron job `npm run cron`
 
 3. Run tests `npm run tests`
+
+## Documentation
+
+Swagger documentation `docs/open-api.yaml`
